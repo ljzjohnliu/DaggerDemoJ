@@ -5,8 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.ljz.dagger.basicuse.Bird;
 import com.ljz.dagger.basicuse.Cat;
 import com.ljz.dagger.basicuse.DaggerMainComponent;
+import com.ljz.dagger.seconduse.Flower;
+import com.ljz.dagger.seconduse.MainModule;
 
 import javax.inject.Inject;
 
@@ -20,6 +23,12 @@ public class MainActivity extends AppCompatActivity {
     @Inject
     Cat cat;
 
+    @Inject
+    Bird bird;
+
+    @Inject
+    Flower flower;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +38,16 @@ public class MainActivity extends AppCompatActivity {
          * DaggerMainComponent就是真正的依赖注入组件，它是MainComponent接口编译生成的。
          * 至此，一个最简单的dagger使用实例完成
          */
-        DaggerMainComponent.builder().build().inject(this);
-        Log.d(TAG, "onCreate: " + cat.toString());
+        DaggerMainComponent.builder()
+                .build()
+                .inject(this);
+        Log.d(TAG, "onCreate, cat: " + cat.toString());
+        Log.d(TAG, "onCreate, bird: " + bird.toString());
+
+        DaggerMainComponent.builder()
+                .mainModule(new MainModule())
+                .build()
+                .inject(this);
+        Log.e(TAG, "onCreate, flower: " + flower.toString());
     }
 }
