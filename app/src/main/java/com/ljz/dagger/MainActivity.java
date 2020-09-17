@@ -39,15 +39,11 @@ public class MainActivity extends AppCompatActivity {
          * 至此，一个最简单的dagger使用实例完成
          */
         DaggerMainComponent.builder()
+                .mainModule(new MainModule())//这一行不写也是OK的，看下 DaggerMainComponent 实现就清楚了
                 .build()
                 .inject(this);
         Log.d(TAG, "onCreate, cat: " + cat.toString());
         Log.d(TAG, "onCreate, bird: " + bird.toString());
-
-        DaggerMainComponent.builder()
-                .mainModule(new MainModule())
-                .build()
-                .inject(this);
         Log.e(TAG, "onCreate, flower: " + flower.toString());
     }
 }
