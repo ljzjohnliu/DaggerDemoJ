@@ -10,16 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="MainActivity"
+        android:text="I am DetailActivity!"
         android:layout_gravity="center_horizontal"/>
-
-    <Button
-        android:id="@+id/to_detail"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        android:layout_gravity="center_horizontal"
-        android:text="跳转到DetailActivity"
-        />
 
 </LinearLayout>

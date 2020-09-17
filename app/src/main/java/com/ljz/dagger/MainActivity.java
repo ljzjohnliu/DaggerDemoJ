@@ -2,8 +2,13 @@ package com.ljz.dagger;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 
 import com.ljz.dagger.basicuse.Bird;
 import com.ljz.dagger.basicuse.Cat;
@@ -15,8 +20,9 @@ import com.ljz.dagger.seconduse.QualifierBlue;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "MainActivity";
+    private Context mContext;
 
     /**
      * 在 MainActivity 中创建了一个 cat变量，并加上了 @Inject注解，来告诉 Dagger2 你要为cat赋值，即依赖注入。
@@ -44,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mContext = this;
+
+        findViewById(R.id.to_detail).setOnClickListener(this);
 
         /**
          * DaggerMainComponent就是真正的依赖注入组件，它是MainComponent接口编译生成的。
@@ -58,5 +67,20 @@ public class MainActivity extends AppCompatActivity {
         Log.e(TAG, "onCreate, flower1: " + flower1.toString());
         Log.e(TAG, "onCreate, flower2: " + flower2.toString());
         Log.e(TAG, "onCreate, flower3: " + flower3.toString());
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        Intent intent = new Intent();
+        switch (id) {
+            case R.id.to_detail:
+                intent.setComponent(new ComponentName("com.ljz.dagger", "com.ljz.dagger.DetailActivity"));
+                break;
+            default:
+                Toast.makeText(mContext, "没有有效的跳转页面", Toast.LENGTH_SHORT).show();
+                return;
+        }
+        startActivity(intent);
     }
 }
