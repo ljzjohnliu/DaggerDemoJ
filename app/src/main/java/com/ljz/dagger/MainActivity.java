@@ -10,8 +10,10 @@ import com.ljz.dagger.basicuse.Cat;
 import com.ljz.dagger.basicuse.DaggerMainComponent;
 import com.ljz.dagger.seconduse.Flower;
 import com.ljz.dagger.seconduse.MainModule;
+import com.ljz.dagger.seconduse.QualifierBlue;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -26,8 +28,17 @@ public class MainActivity extends AppCompatActivity {
     @Inject
     Bird bird;
 
+    @Named("red")
     @Inject
-    Flower flower;
+    Flower flower1;
+
+    @Named("white")
+    @Inject
+    Flower flower2;
+
+    @QualifierBlue
+    @Inject
+    Flower flower3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
                 .inject(this);
         Log.d(TAG, "onCreate, cat: " + cat.toString());
         Log.d(TAG, "onCreate, bird: " + bird.toString());
-        Log.e(TAG, "onCreate, flower: " + flower.toString());
+        Log.e(TAG, "onCreate, flower1: " + flower1.toString());
+        Log.e(TAG, "onCreate, flower2: " + flower2.toString());
+        Log.e(TAG, "onCreate, flower3: " + flower3.toString());
     }
 }
