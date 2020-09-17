@@ -1,5 +1,7 @@
 package com.ljz.dagger.seconduse;
 
+import com.ljz.dagger.thirduse.Book;
+
 import javax.inject.Named;
 
 import dagger.Module;
@@ -39,5 +41,10 @@ public class MainModule {
     @Provides
     public Flower provideBlueRose() {
         return new Flower("玫瑰", "蓝色");
+    }
+
+    @Provides
+    public Book provideBook() {
+        return new Book("Kotlin 指南", 100.8f);
     }
 }

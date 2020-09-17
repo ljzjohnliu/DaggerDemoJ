@@ -1,10 +1,11 @@
-package com.ljz.dagger;
+package com.ljz.dagger.activity;
 
 import android.os.Bundle;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.ljz.dagger.R;
 import com.ljz.dagger.thirduse.Book;
 import com.ljz.dagger.thirduse.DaggerDetailComponent;
 import com.ljz.dagger.thirduse.DetailModule;

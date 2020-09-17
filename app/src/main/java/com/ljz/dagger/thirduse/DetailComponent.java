@@ -1,8 +1,6 @@
 package com.ljz.dagger.thirduse;
 
-import com.ljz.dagger.DetailActivity;
-
-import javax.inject.Singleton;
+import com.ljz.dagger.activity.DetailActivity;
 
 import dagger.Component;
 

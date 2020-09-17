@@ -1,4 +1,4 @@
-package com.ljz.dagger;
+package com.ljz.dagger.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,12 +10,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.ljz.dagger.R;
 import com.ljz.dagger.basicuse.Bird;
 import com.ljz.dagger.basicuse.Cat;
 import com.ljz.dagger.basicuse.DaggerMainComponent;
 import com.ljz.dagger.seconduse.Flower;
 import com.ljz.dagger.seconduse.MainModule;
 import com.ljz.dagger.seconduse.QualifierBlue;
+import com.ljz.dagger.thirduse.Book;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -46,6 +48,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Inject
     Flower flower3;
 
+    @Inject
+    Book book;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Log.e(TAG, "onCreate, flower1: " + flower1.toString());
         Log.e(TAG, "onCreate, flower2: " + flower2.toString());
         Log.e(TAG, "onCreate, flower3: " + flower3.toString());
+//        Log.e(TAG, "onCreate, book: " + book.toString());
     }
 
     @Override
@@ -75,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent();
         switch (id) {
             case R.id.to_detail:
-                intent.setComponent(new ComponentName("com.ljz.dagger", "com.ljz.dagger.DetailActivity"));
+                intent.setComponent(new ComponentName("com.ljz.dagger", "com.ljz.dagger.activity.DetailActivity"));
                 break;
             default:
                 Toast.makeText(mContext, "没有有效的跳转页面", Toast.LENGTH_SHORT).show();

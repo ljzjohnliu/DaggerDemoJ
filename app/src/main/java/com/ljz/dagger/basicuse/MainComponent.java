@@ -1,6 +1,6 @@
 package com.ljz.dagger.basicuse;
 
-import com.ljz.dagger.MainActivity;
+import com.ljz.dagger.activity.MainActivity;
 import com.ljz.dagger.seconduse.MainModule;
 
 import dagger.Component;
