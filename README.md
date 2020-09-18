@@ -1,6 +1,6 @@
 # DaggerDemoJ
 
-## 3 dependencies
+## 3.dependencies
     我们现在看上边遗留的问题，通过 Dagger 2 如何实现全局单例，比如多个 Activity 如何共享同一个对象。在多个 Module 类里定义相同的 provide 方法是行不通的，例如：
     @Singleton
     @Provides
@@ -74,3 +74,63 @@
     
     我们在两个 Activity 中分别依赖一个 Book 对象，并通过 Log 输出：
     是我们想要的结果。
+    
+    
+## 4.@Subcomponent
+    @Subcomponent是用来实现一个子依赖注入组件的，就是说使用@Subcomponent注解的 Component 可以有一个父依赖注入组件，
+    但这种父子关系并不是通过传统的继承方式实现的。自然的，子依赖注入组件会拥有父依赖注入组件的功能。
+    
+    首先定义一个使用@Subcomponent注解的依赖注入组件接口：
+    
+    @Subcomponent(modules = {SubModule.class})
+    public interface MySubComponent {
+        void inject(SubActivity activity);
+    }
+    
+    它依赖的 SubModule 为：
+    
+    @Module
+    public class SubModule {
+        @Provides
+        public Flower provideFlower() {
+            return new Flower("腊梅", "红色");
+        }
+    }
+    
+    如果我们想让 DetailComponent 做为 MySubComponent 的父组件，则需要在 DetailComponent 中定义一个返回 MySubComponent 的方法，方法参数为其依赖的 Module 类型：
+    
+    @DetailActivityScope
+    @Component(modules = {DetailModule.class})
+    public interface DetailComponent {
+        void inject(DetailActivity activity);
+    
+        // 定义返回子组件的方法，参数为子组件需要的module
+        MySubComponent getSubComponent(SubModule module);
+    }
+    到这里我们的子组件就实现完成了，如何使用呢？子依赖注入注入组件是不能单独直接使用的，因为编译后并不会生成类似DaggerMySubComponent的辅助类，所以需要通过父组件来获取，这也是我们需要在父组件中定义返回子组件方法的原因。具体的用法如下：
+    
+    public class SubActivity extends AppCompatActivity {
+        @Inject
+        Book book;
+    
+        @Inject
+        Flower flower;
+    
+        public static void start(Context context) {
+            context.startActivity(new Intent(context, SubActivity.class));
+        }
+    
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_sub);
+            // 创建父组件对象
+            DetailComponent detailComponent = DaggerDetailComponent.builder().detailModule(new DetailModule()).build();
+            // 得到子组件，并完成依赖注入
+            detailComponent.getSubComponent(new SubModule()).inject(this);
+    
+            Log.e("SubActivity-book", book.toString());
+            Log.e("flower", flower.toString());
+        }
+    }
+    我们并没有在 SubModule 中定义提供 Flowerd 对象的方法，但是同过这种“继承”，MySubComponent 就可以提供 Flower 对象了.

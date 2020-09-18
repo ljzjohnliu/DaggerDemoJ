@@ -3,6 +3,8 @@ package com.ljz.dagger.singletonuse;
 import com.ljz.dagger.activity.DetailActivity;
 import com.ljz.dagger.common.CommonComponent;
 import com.ljz.dagger.common.CommonScope;
+import com.ljz.dagger.subcompuse.MySubComponent;
+import com.ljz.dagger.subcompuse.SubModule;
 
 import dagger.Component;
 
@@ -14,4 +16,7 @@ import dagger.Component;
 @Component(modules = {DetailModule.class}, dependencies = {CommonComponent.class})
 public interface DetailComponent {
     void inject(DetailActivity activity);
+
+    // 定义返回子组件的方法，参数为子组件需要的module
+    MySubComponent getSubComponent(SubModule module);
 }
