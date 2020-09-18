@@ -1,7 +1,11 @@
 package com.ljz.dagger.basicuse;
 
 import com.ljz.dagger.activity.MainActivity;
+import com.ljz.dagger.common.CommonComponent;
+import com.ljz.dagger.common.CommonScope;
 import com.ljz.dagger.seconduse.MainModule;
+
+import javax.inject.Singleton;
 
 import dagger.Component;
 
@@ -20,7 +24,8 @@ import dagger.Component;
  * 所以，DaggerMainComponent就是真正的依赖注入组件，最后在 MainActivity 中添加最终完成依赖注入的代码
  */
 //通过如下方式将 MainModule 和 MainComponent 关联起来(modules = {MainModule.class})，这样依赖注入组件就知道从哪个依赖提供方取数据了：
-@Component(modules = {MainModule.class})
+@CommonScope
+@Component(modules = {MainModule.class}, dependencies = {CommonComponent.class})
 public interface MainComponent {
     /**
      * inject方法的参数是依赖需求方的类型，即例子中的 MainActivity，注意不可是基类的类型。

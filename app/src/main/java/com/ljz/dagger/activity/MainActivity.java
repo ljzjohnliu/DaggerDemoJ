@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.ljz.dagger.MyApp;
 import com.ljz.dagger.R;
 import com.ljz.dagger.basicuse.Bird;
 import com.ljz.dagger.basicuse.Cat;
@@ -65,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
          */
         DaggerMainComponent.builder()
                 .mainModule(new MainModule())//这一行不写也是OK的，看下 DaggerMainComponent 实现就清楚了
+                .commonComponent(((MyApp)getApplication()).getCommonComponent())
                 .build()
                 .inject(this);
         Log.d(TAG, "onCreate, cat: " + cat.toString());
@@ -72,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Log.e(TAG, "onCreate, flower1: " + flower1.toString());
         Log.e(TAG, "onCreate, flower2: " + flower2.toString());
         Log.e(TAG, "onCreate, flower3: " + flower3.toString());
-//        Log.e(TAG, "onCreate, book: " + book.toString());
+        Log.e(TAG, "onCreate, book: " + book.toString());
     }
 
     @Override

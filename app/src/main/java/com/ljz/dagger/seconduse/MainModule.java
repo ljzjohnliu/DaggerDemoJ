@@ -43,8 +43,4 @@ public class MainModule {
         return new Flower("玫瑰", "蓝色");
     }
 
-    @Provides
-    public Book provideBook() {
-        return new Book("Kotlin 指南", 100.8f);
-    }
 }

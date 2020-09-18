@@ -5,6 +5,7 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.ljz.dagger.MyApp;
 import com.ljz.dagger.R;
 import com.ljz.dagger.thirduse.Book;
 import com.ljz.dagger.thirduse.DaggerDetailComponent;
@@ -28,6 +29,10 @@ public class DetailActivity extends AppCompatActivity {
 
         DaggerDetailComponent.builder()
                 .detailModule(new DetailModule())
+                /**
+                 * commonComponent()方法需要一个 CommonComponent 对象，同理在 ShareActivity 中也需要一个 CommonComponent 对象，这里我们要保证两个 CommonComponent 对象是同一个
+                 * */
+                .commonComponent(((MyApp)getApplication()).getCommonComponent())
                 .build()
                 .inject(this);
 
