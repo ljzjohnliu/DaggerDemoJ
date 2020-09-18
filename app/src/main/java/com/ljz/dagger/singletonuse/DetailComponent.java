@@ -1,4 +1,4 @@
-package com.ljz.dagger.thirduse;
+package com.ljz.dagger.singletonuse;
 
 import com.ljz.dagger.activity.DetailActivity;
 import com.ljz.dagger.common.CommonComponent;

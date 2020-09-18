@@ -1,4 +1,4 @@
-package com.ljz.dagger.thirduse;
+package com.ljz.dagger.singletonuse;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

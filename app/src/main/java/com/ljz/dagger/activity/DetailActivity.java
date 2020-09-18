@@ -7,9 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.ljz.dagger.MyApp;
 import com.ljz.dagger.R;
-import com.ljz.dagger.thirduse.Book;
-import com.ljz.dagger.thirduse.DaggerDetailComponent;
-import com.ljz.dagger.thirduse.DetailModule;
+import com.ljz.dagger.singletonuse.Book;
+import com.ljz.dagger.singletonuse.DaggerDetailComponent;
+import com.ljz.dagger.singletonuse.DetailModule;
 
 import javax.inject.Inject;
 

@@ -3,9 +3,7 @@ package com.ljz.dagger.basicuse;
 import com.ljz.dagger.activity.MainActivity;
 import com.ljz.dagger.common.CommonComponent;
 import com.ljz.dagger.common.CommonScope;
-import com.ljz.dagger.seconduse.MainModule;
-
-import javax.inject.Singleton;
+import com.ljz.dagger.qualifieruse.MainModule;
 
 import dagger.Component;
 

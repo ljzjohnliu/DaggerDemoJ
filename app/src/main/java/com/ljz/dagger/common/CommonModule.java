@@ -1,6 +1,6 @@
 package com.ljz.dagger.common;
 
-import com.ljz.dagger.thirduse.Book;
+import com.ljz.dagger.singletonuse.Book;
 
 import javax.inject.Singleton;
 

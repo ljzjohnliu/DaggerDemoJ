@@ -1,9 +1,6 @@
-package com.ljz.dagger.thirduse;
-
-import javax.inject.Singleton;
+package com.ljz.dagger.singletonuse;
 
 import dagger.Module;
-import dagger.Provides;
 
 @Module
 public class DetailModule {

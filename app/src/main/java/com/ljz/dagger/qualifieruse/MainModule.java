@@ -1,6 +1,4 @@
-package com.ljz.dagger.seconduse;
-
-import com.ljz.dagger.thirduse.Book;
+package com.ljz.dagger.qualifieruse;
 
 import javax.inject.Named;
 

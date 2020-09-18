@@ -1,4 +1,4 @@
-package com.ljz.dagger.seconduse;
+package com.ljz.dagger.qualifieruse;
 
 public class Flower {
 

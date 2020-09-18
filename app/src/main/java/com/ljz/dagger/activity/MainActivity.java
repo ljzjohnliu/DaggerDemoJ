@@ -15,10 +15,10 @@ import com.ljz.dagger.R;
 import com.ljz.dagger.basicuse.Bird;
 import com.ljz.dagger.basicuse.Cat;
 import com.ljz.dagger.basicuse.DaggerMainComponent;
-import com.ljz.dagger.seconduse.Flower;
-import com.ljz.dagger.seconduse.MainModule;
-import com.ljz.dagger.seconduse.QualifierBlue;
-import com.ljz.dagger.thirduse.Book;
+import com.ljz.dagger.qualifieruse.Flower;
+import com.ljz.dagger.qualifieruse.MainModule;
+import com.ljz.dagger.qualifieruse.QualifierBlue;
+import com.ljz.dagger.singletonuse.Book;
 
 import javax.inject.Inject;
 import javax.inject.Named;

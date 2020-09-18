@@ -1,4 +1,4 @@
-package com.ljz.dagger.seconduse;
+package com.ljz.dagger.qualifieruse;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
