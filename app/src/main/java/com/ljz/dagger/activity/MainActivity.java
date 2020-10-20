@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.ljz.dagger.MyApp;
@@ -22,6 +23,9 @@ import com.ljz.dagger.singletonuse.Book;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "MainActivity";
@@ -52,13 +56,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Inject
     Book book;
 
+    @BindView(R.id.to_detail)
+    Button toDetail;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mContext = this;
 
-        findViewById(R.id.to_detail).setOnClickListener(this);
+        ButterKnife.bind(this);
+
+        toDetail.setOnClickListener(this);
+
+//        findViewById(R.id.to_detail).setOnClickListener(this);
 
         /**
          * DaggerMainComponent就是真正的依赖注入组件，它是MainComponent接口编译生成的。
@@ -66,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
          */
         DaggerMainComponent.builder()
                 .mainModule(new MainModule())//这一行不写也是OK的，看下 DaggerMainComponent 实现就清楚了
-                .commonComponent(((MyApp)getApplication()).getCommonComponent())
+                .commonComponent(((MyApp) getApplication()).getCommonComponent())
                 .build()
                 .inject(this);
         Log.d(TAG, "onCreate, cat: " + cat.toString());
