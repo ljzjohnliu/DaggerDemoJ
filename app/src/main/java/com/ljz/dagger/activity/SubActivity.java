@@ -7,6 +7,7 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.ljz.dagger.MyApp;
 import com.ljz.dagger.R;
 import com.ljz.dagger.qualifieruse.Flower;
 import com.ljz.dagger.singletonuse.Book;
@@ -38,6 +39,7 @@ public class SubActivity extends AppCompatActivity {
         // 创建父组件对象
         DetailComponent detailComponent = DaggerDetailComponent.builder()
                 .detailModule(new DetailModule())
+                .commonComponent(((MyApp)getApplication()).getCommonComponent())
                 .build();
         // 得到子组件，并完成依赖注入
         detailComponent.getSubComponent(new SubModule()).inject(this);

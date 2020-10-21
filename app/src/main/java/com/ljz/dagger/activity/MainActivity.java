@@ -59,6 +59,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @BindView(R.id.to_detail)
     Button toDetail;
 
+    @BindView(R.id.to_sub)
+    Button toSub;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ButterKnife.bind(this);
 
         toDetail.setOnClickListener(this);
+        toSub.setOnClickListener(this);
 
 //        findViewById(R.id.to_detail).setOnClickListener(this);
 
@@ -95,6 +99,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (id) {
             case R.id.to_detail:
                 intent.setComponent(new ComponentName("com.ljz.dagger", "com.ljz.dagger.activity.DetailActivity"));
+                break;
+            case R.id.to_sub:
+                intent.setComponent(new ComponentName("com.ljz.dagger", "com.ljz.dagger.activity.SubActivity"));
                 break;
             default:
                 Toast.makeText(mContext, "没有有效的跳转页面", Toast.LENGTH_SHORT).show();
